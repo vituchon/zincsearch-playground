@@ -1,0 +1,20 @@
+
+# NO AUTH
+
+curl -v -X 'GET' 'http://localhost:4080/version' -H 'accept: application/json' 
+
+# AUTH
+
+## NO DATA REQUIRED
+curl -v -X 'GET' 'http://localhost:4080/api/index' -H 'accept: application/json' -u admin:Complexpass#123
+
+
+## DATA REQUIRED
+
+### INSERTING
+
+curl -X 'POST' 'http://localhost:4080/api/my_index/_doc' -H 'accept: application/json'  --data-binary '{ "name": "Cortadora de pasto Barata", "price": 100 }' -u admin:Complexpass#123
+
+### QUERYING
+
+curl -v -X 'POST' 'http://localhost:4080/api/my_index/_search' -H 'accept: application/json' --data-binary '{"search_type":"match","query":{"term":"Barata"},"from":0,"max_results":20,"_source":[]}' -u admin:Complexpass#123
