@@ -27,9 +27,10 @@ var DefaultServer Server = Server{
 	},
 }
 
-func (s Server) GetOrigin() string {
+func (s Server) GetOrigin() string { // origin = protocolo (http, https, ect..) + hostname (nombre de maquina o IP) + puerto. Ver https://developer.mozilla.org/en-US/docs/Glossary/Origin
 	const protocol = "http"
-	return protocol + "://" + s.Hostname + ":" + s.Port
+	host := s.Hostname + ":" + s.Port // ver host vs hostname => https://stackoverflow.com/a/13673410/903998. host = hostname + puerto
+	return protocol + "://" + host    // más sobre partes de una URL => https://blog.hubspot.com/marketing/parts-url
 }
 
 func (s Server) Version() (string, error) {
